@@ -42,6 +42,7 @@ class ViewController: UIViewController {
         login.font = UIFont(name: "Avenir-Next", size: 31)
         login.font = UIFont.systemFont(ofSize: 31, weight: .bold)
         // Поискала как делать чтоб все было на местах при повороте экрана - мало что поняла, а это не работает потому что мы их отключили вероятно... и как тогда быть?
+        // Еще есть некий загадочный Autoloyaut с которвм не поняла как работать - в принципе что это? - констрейнты что ли...?
         //login.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         login.translatesAutoresizingMaskIntoConstraints = false
         return login
