@@ -14,14 +14,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     
-        
+        // MARK: есть ли какая-то разница как писать - так или 2 вар?
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = ViewController()
         window.makeKeyAndVisible()
         self.window = window
         
-        
+        // 2 вар
         //window = UIWindow(windowScene: windowScene)
        // let viewController = ViewController()
        // window?.rootViewController = viewController
