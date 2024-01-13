@@ -207,15 +207,26 @@ class ViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupView()
         setupHierarchy()
         setupLayout()
         
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(moveContentUp), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        //скрыть клавиатуру
+        let tapGuesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing(_:)))
+        view.addGestureRecognizer(tapGuesture)
+        
+//        NotificationCenter.default.addObserver(self, selector: #selector(moveContentBack), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     //MARK: - Setups
     
+    private func createGesture() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
+        view.addGestureRecognizer(gesture)
+    }
     private func setupView(){
       
     }
@@ -324,50 +335,26 @@ class ViewController: UIViewController {
     @objc private func messengersTapped() {
         print("Надеемся, у вас есть VPN")
     }
-//    
-//    
-//    @objc private func twitterTapped() {
-//        if let url = URL(string: "https://www.youtube.com/watch?v=7AzimrAgWbA") {
-//            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-//        }
-//    }
-}
-
-
-
-//MARK: - Extention
-
-extension UITextField {
-    func setLeftIcon(image: UIImage, color: UIColor) {
-        let iconView = UIImageView(frame: CGRect(x: 10, y: 5, width: 20, height: 20))
-        iconView.tintColor = color
-        iconView.image = image
-        let iconContainerView: UIView = UIView(frame: CGRect(x: 20, y: 0, width: 40, height: 30))
-        iconContainerView.addSubview(iconView)
-        leftView = iconContainerView
-        leftViewMode = .always
+    
+    // так не срабатывает убрать клавиатуру(((
+    @objc private func viewTapped() {
+        view.endEditing(true)
     }
-}
-
-extension UITextField {
-    func setRightIcon(image: UIImage, color: UIColor) {
-        let iconView = UIImageView(frame: CGRect(x: 100, y: 5, width: 20, height: 20))
-        iconView.tintColor = color
-        iconView.image = image
+    
+    // но я нашла нечто другое и более замороченное - это вообще то что нужно?
+    @objc private func moveContentUp(notification: NSNotification) {
+        let userInfo = notification.userInfo
+        let keyboardFrame = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
+        let keyboardHeight = keyboardFrame!.size.height
+        let emptySpaceHight = view.frame.size.height - remindTextButton.frame.origin.y - remindTextButton.frame.size.height
+        let coveredContentHeight = keyboardHeight - emptySpaceHight
+        view.frame.origin.y = -coveredContentHeight
         
-        let iconContainerView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 130, height: 30))
-        iconContainerView.addSubview(iconView)
-        rightView = iconContainerView
-        rightViewMode = .always
+    }
+    
+    @objc private func moveContentBack(notification: NSNotification) {
+        view.frame.origin.y = 0
     }
 }
-                            
-extension UITextField {
-    func attributedText(string: String) {
-                
-         let attributedArray: [NSAttributedString.Key : Any] = [
-            NSAttributedString.Key.foregroundColor: UIColor.green]
-                
-        _ = NSAttributedString(string: string, attributes: attributedArray)
-    }
-}
+
+
