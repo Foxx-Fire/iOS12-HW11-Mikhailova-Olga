@@ -135,7 +135,7 @@ class ViewController: UIViewController {
     
     //MARK: - FB button
     private lazy var faceBookButton: UIButton = {
-        let faceBookButton = UIButton()
+        let faceBookButton = UIButton(type: .system)
         faceBookButton.backgroundColor = .systemIndigo
         faceBookButton.setTitleColor(UIColor.white, for: .normal)
         faceBookButton.setTitle("Facebook", for: .normal)
@@ -294,9 +294,9 @@ class ViewController: UIViewController {
         }
     }
     
-    
+    // почему-то не отрабатывает принт
     @objc private func fbTapped() {
-        print("Не-а")
+        print("Надеемся, у вас есть VPN")
     }
 //    
 //    
