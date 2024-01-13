@@ -10,15 +10,15 @@ import UIKit
 class ViewController: UIViewController {
     
     //MARK: - Constants
-    
-    private enum Constants {
-        static let background = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 0))
-    }
+    // не поняла что все же сюда выносить - вынесла и не работает ничего
+//    private enum Constants {
+//        static let background = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 0))
+//    }
     //MARK: - Outlets
     
     //MARK: - ViewBackground
     private lazy var background: UIView = {
-        //let background = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 0))
+        let background = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 0))
         let gradient = CAGradientLayer()
 
         gradient.frame = view.bounds
