@@ -9,7 +9,24 @@ import UIKit
 
 class ViewController: UIViewController {
     
-//MARK: - Outlets
+    //MARK: - Outlets
+    
+    //MARK: - ViewBackground
+    private lazy var background: UIView = {
+        let background = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 0))
+        let gradient = CAGradientLayer()
+
+        gradient.frame = view.bounds
+        gradient.colors = [UIColor.blue.cgColor, UIColor.systemPink.cgColor, UIColor.white.cgColor]
+
+        background.layer.insertSublayer(gradient, at: 0)
+        
+        background.contentMode = .scaleAspectFit
+        background.autoresizingMask = [.flexibleWidth,.flexibleHeight]
+        background.translatesAutoresizingMaskIntoConstraints = false
+        return background
+    }()
+    
     
     //MARK: - Login
     private lazy var login: UILabel = {
@@ -19,6 +36,7 @@ class ViewController: UIViewController {
         login.textColor = .white
         login.font = UIFont(name: "Avenir-Next", size: 31)
         login.font = UIFont.systemFont(ofSize: 31, weight: .bold)
+        //login.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         login.translatesAutoresizingMaskIntoConstraints = false
         return login
     }()
@@ -29,12 +47,13 @@ class ViewController: UIViewController {
         //loginTextField.borderStyle = .bezel
         loginTextField.layer.cornerRadius = 18
         loginTextField.placeholder = "keanureeves01"
-        loginTextField.textAlignment = .center
+        loginTextField.textAlignment = .left
         loginTextField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         loginTextField.textColor = UIColor.systemGray3
         loginTextField.setLeftIcon(image: UIImage(systemName: "person") ?? UIImage(), color: UIColor.gray)
         loginTextField.setRightIcon(image: UIImage(systemName: "checkmark.circle.fill") ?? UIImage(), color: UIColor.green)
         loginTextField.backgroundColor = .white
+        //loginTextField.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         loginTextField.translatesAutoresizingMaskIntoConstraints = false
         return loginTextField
     }()
@@ -44,11 +63,12 @@ class ViewController: UIViewController {
         let passwordTextField = UITextField()
         passwordTextField.layer.cornerRadius = 18
         passwordTextField.placeholder = "Password"
-        passwordTextField.textAlignment = .center
+        passwordTextField.textAlignment = .left
         passwordTextField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         passwordTextField.textColor = UIColor.systemGray3
         passwordTextField.setLeftIcon(image: UIImage(systemName: "lock") ?? UIImage(), color: UIColor.gray)
         passwordTextField.backgroundColor = .white
+        //passwordTextField.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         return passwordTextField
     }()
@@ -69,6 +89,7 @@ class ViewController: UIViewController {
         loginButton.layer.shouldRasterize = true
         loginButton.layer.rasterizationScale = UIScreen.main.scale
         loginButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+       // loginButton.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         return loginButton
     }()
@@ -80,6 +101,7 @@ class ViewController: UIViewController {
         remindTextButton.setTitleColor(UIColor.white, for: .normal)
         remindTextButton.titleLabel?.font = UIFont(name: "Avenir-Next", size: 12)
         remindTextButton.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        //remindTextButton.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         remindTextButton.translatesAutoresizingMaskIntoConstraints = false
         return remindTextButton
     }()
@@ -89,9 +111,12 @@ class ViewController: UIViewController {
         let connectTextField = UITextField()
         connectTextField.text = "or connect with"
         connectTextField.textAlignment = .center
-        connectTextField.textColor = UIColor.white
+        connectTextField.textColor = UIColor.gray
+        connectTextField.backgroundColor = .white
         connectTextField.font = UIFont(name: "Avenir-Next", size: 10)
         connectTextField.font = UIFont.systemFont(ofSize: 10, weight: .light)
+        connectTextField.layer.cornerRadius = 20
+        //connectTextField.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         connectTextField.translatesAutoresizingMaskIntoConstraints = false
         return connectTextField
     }()
@@ -100,6 +125,7 @@ class ViewController: UIViewController {
     private lazy var line: UIView = {
         let line = UIView()
         line.backgroundColor = UIColor.systemGray5
+        //line.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         line.translatesAutoresizingMaskIntoConstraints = false
         return line
     }()
@@ -108,19 +134,23 @@ class ViewController: UIViewController {
     private lazy var faceBookButton: UIButton = {
         let faceBookButton = UIButton()
         faceBookButton.backgroundColor = .systemIndigo
-        faceBookButton.layer.cornerRadius = 18
-        faceBookButton.setTitle("Facebook", for: .normal)
         faceBookButton.setTitleColor(UIColor.white, for: .normal)
+        faceBookButton.setTitle("Facebook", for: .normal)
+        faceBookButton.setImage(UIImage(named: "facebook")?.withRenderingMode(.alwaysTemplate), for: .normal)
         faceBookButton.titleLabel?.font = UIFont(name: "Avenir-Next", size: 12)
         faceBookButton.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .bold)
-        faceBookButton.setImage(UIImage(named: "facebook")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        faceBookButton.imageView?.contentMode = .scaleAspectFit
+        faceBookButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 100)
         faceBookButton.tintColor = UIColor.white
+        faceBookButton.layer.cornerRadius = 18
         faceBookButton.layer.shadowColor = UIColor.black.cgColor
         faceBookButton.layer.shadowOpacity = 0.3
         faceBookButton.layer.shadowOffset = .zero
         faceBookButton.layer.shadowRadius = 10
         faceBookButton.layer.shouldRasterize = true
         faceBookButton.layer.rasterizationScale = UIScreen.main.scale
+        faceBookButton.addTarget(self, action: #selector(fbTapped), for: .touchUpInside)
+        //faceBookButton.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         faceBookButton.translatesAutoresizingMaskIntoConstraints = false
         return faceBookButton
     }()
@@ -134,6 +164,8 @@ class ViewController: UIViewController {
         twitterButton.setTitleColor(UIColor.white, for: .normal)
         twitterButton.titleLabel?.font = UIFont(name: "Avenir-Next", size: 12)
         twitterButton.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        twitterButton.imageView?.contentMode = .scaleAspectFit
+        twitterButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 100)
         twitterButton.setImage( UIImage(named: "twitter")?.withRenderingMode(.alwaysTemplate), for: .normal)
         twitterButton.tintColor = UIColor.white
         twitterButton.layer.shadowColor = UIColor.black.cgColor
@@ -142,21 +174,23 @@ class ViewController: UIViewController {
         twitterButton.layer.shadowRadius = 10
         twitterButton.layer.shouldRasterize = true
         twitterButton.layer.rasterizationScale = UIScreen.main.scale
+       // twitterButton.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         twitterButton.translatesAutoresizingMaskIntoConstraints = false
         return twitterButton
     }()
-   
+    
     //MARK: account
     private lazy var accountTextField: UITextField = {
         let accountTextField = UITextField()
         accountTextField.text = "Don't have account?"
-        accountTextField.textColor = UIColor.magenta
+        accountTextField.textColor = UIColor.gray
         accountTextField.font = UIFont(name: "Avenir-Next", size: 14)
         accountTextField.font = UIFont.systemFont(ofSize: 10, weight: .light)
+        //accountTextField.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         accountTextField.translatesAutoresizingMaskIntoConstraints = false
         return accountTextField
     }()
-
+    
     //MARK: signUp
     private lazy var signUpTextView: UITextField = {
         let signUpTextView = UITextField()
@@ -164,12 +198,13 @@ class ViewController: UIViewController {
         signUpTextView.font = UIFont(name: "Avenir-Next", size: 14)
         signUpTextView.font = UIFont.systemFont(ofSize: 10, weight: .light)
         signUpTextView.attributedText(string: signUpTextView.text ?? "" )
+        //signUpTextView.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         signUpTextView.translatesAutoresizingMaskIntoConstraints = false
         return signUpTextView
     }()
     
     
-//MARK: - Lifecycle
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -178,15 +213,15 @@ class ViewController: UIViewController {
         setupLayout()
         
     }
-
+    
     //MARK: - Setups
     
     private func setupView(){
-        view.backgroundColor = .blue
+       // view.backgroundColor = .blue
     }
     
     private func setupHierarchy() {
-       
+        view.addSubview(background)
         view.addSubview(login)
         view.addSubview(loginTextField)
         view.addSubview(passwordTextField)
@@ -220,7 +255,7 @@ class ViewController: UIViewController {
             loginButton.centerXAnchor.constraint(equalTo:view.centerXAnchor),
             loginButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 45),
             loginButton.heightAnchor.constraint(equalToConstant: 34),
-//
+            //
             remindTextButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 25),
             remindTextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
@@ -234,12 +269,12 @@ class ViewController: UIViewController {
             connectTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             connectTextField.heightAnchor.constraint(equalToConstant: 10),
             connectTextField.widthAnchor.constraint(equalToConstant: 100),
-
+            
             faceBookButton.topAnchor.constraint(equalTo: connectTextField.bottomAnchor, constant: 30),
             faceBookButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 35),
             faceBookButton.heightAnchor.constraint(equalToConstant: 34),
             faceBookButton.widthAnchor.constraint(equalToConstant: 150),
-
+            
             twitterButton.topAnchor.constraint(equalTo: connectTextField.bottomAnchor, constant: 30),
             twitterButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -35),
             twitterButton.heightAnchor.constraint(equalToConstant: 34),
@@ -251,7 +286,7 @@ class ViewController: UIViewController {
             signUpTextView.topAnchor.constraint(equalTo: faceBookButton.bottomAnchor, constant: 35),
             signUpTextView.rightAnchor.constraint(equalTo: accountTextField.rightAnchor, constant: 45)
         ])
-       
+        
     }
     //MARK: - Actions
     @objc private func buttonTapped() {
@@ -259,7 +294,21 @@ class ViewController: UIViewController {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
+    
+    
+    @objc private func fbTapped() {
+        print("Не-а")
+    }
+//    
+//    
+//    @objc private func twitterTapped() {
+//        if let url = URL(string: "https://www.youtube.com/watch?v=7AzimrAgWbA") {
+//            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//        }
+//    }
 }
+
+
 
 //MARK: - Extention
 
@@ -268,7 +317,7 @@ extension UITextField {
         let iconView = UIImageView(frame: CGRect(x: 10, y: 5, width: 20, height: 20))
         iconView.tintColor = color
         iconView.image = image
-        let iconContainerView: UIView = UIView(frame: CGRect(x: 20, y: 0, width: 30, height: 30))
+        let iconContainerView: UIView = UIView(frame: CGRect(x: 20, y: 0, width: 40, height: 30))
         iconContainerView.addSubview(iconView)
         leftView = iconContainerView
         leftViewMode = .always
@@ -277,26 +326,14 @@ extension UITextField {
 
 extension UITextField {
     func setRightIcon(image: UIImage, color: UIColor) {
-        let iconView = UIImageView(frame: CGRect(x: 0, y: 5, width: 20, height: 20))
+        let iconView = UIImageView(frame: CGRect(x: 100, y: 5, width: 20, height: 20))
         iconView.tintColor = color
         iconView.image = image
         
-        let iconContainerView: UIView = UIView(frame: CGRect(x: 20, y: 0, width: 30, height: 30))
+        let iconContainerView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 130, height: 30))
         iconContainerView.addSubview(iconView)
         rightView = iconContainerView
         rightViewMode = .always
-    }
-}
-
-extension UIButton {
-    func addMediaIcon(image: UIImage, imageName: UIImage, color: UIColor) {
-        let i = UIImageView()
-        i.image = image
-        i.tintColor = color
-
-
-        let iconContainerView: UIEdgeInsets = UIEdgeInsets(top: 10, left: 30, bottom: 10, right: 100)
-       // imageEdgeInsets = iconContainerView
     }
 }
                             
