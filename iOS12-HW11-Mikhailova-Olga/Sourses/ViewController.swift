@@ -129,6 +129,7 @@ class ViewController: UIViewController {
     }()
     
     //MARK: - Line
+    // так себе решение - не знаю как придумать лучше - две линии что ли делать надо?
     private lazy var line: UIView = {
         let line = UIView()
         line.backgroundColor = UIColor.systemGray5
