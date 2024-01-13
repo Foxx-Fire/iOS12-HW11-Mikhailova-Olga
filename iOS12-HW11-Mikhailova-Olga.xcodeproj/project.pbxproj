@@ -12,6 +12,7 @@
 		0BDA792C2B504B0400071FBB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDA792B2B504B0400071FBB /* ViewController.swift */; };
 		0BDA79312B504B0700071FBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BDA79302B504B0700071FBB /* Assets.xcassets */; };
 		0BDA79342B504B0700071FBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BDA79322B504B0700071FBB /* LaunchScreen.storyboard */; };
+		0BE650992B532D81002C69F4 /* Extencions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE650982B532D81002C69F4 /* Extencions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		0BDA79302B504B0700071FBB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BDA79332B504B0700071FBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0BDA79352B504B0700071FBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0BE650982B532D81002C69F4 /* Extencions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extencions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,24 +66,16 @@
 		0BDA793B2B50609200071FBB /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
-				0BDA793C2B5060BD00071FBB /* Configuration */,
+				0BDA79322B504B0700071FBB /* LaunchScreen.storyboard */,
 				0BDA79302B504B0700071FBB /* Assets.xcassets */,
-			);
-			path = Resourses;
-			sourceTree = "<group>";
-		};
-		0BDA793C2B5060BD00071FBB /* Configuration */ = {
-			isa = PBXGroup;
-			children = (
 				0BDA79352B504B0700071FBB /* Info.plist */,
 			);
-			path = Configuration;
+			path = Resourses;
 			sourceTree = "<group>";
 		};
 		0BDA793D2B50610D00071FBB /* App */ = {
 			isa = PBXGroup;
 			children = (
-				0BDA792B2B504B0400071FBB /* ViewController.swift */,
 				0BDA79292B504B0400071FBB /* SceneDelegate.swift */,
 				0BDA79272B504B0400071FBB /* AppDelegate.swift */,
 			);
@@ -91,7 +85,8 @@
 		0BDA793E2B50614600071FBB /* Sourses */ = {
 			isa = PBXGroup;
 			children = (
-				0BDA79322B504B0700071FBB /* LaunchScreen.storyboard */,
+				0BDA792B2B504B0400071FBB /* ViewController.swift */,
+				0BE650982B532D81002C69F4 /* Extencions.swift */,
 			);
 			path = Sourses;
 			sourceTree = "<group>";
@@ -169,6 +164,7 @@
 				0BDA792C2B504B0400071FBB /* ViewController.swift in Sources */,
 				0BDA79282B504B0400071FBB /* AppDelegate.swift in Sources */,
 				0BDA792A2B504B0400071FBB /* SceneDelegate.swift in Sources */,
+				0BE650992B532D81002C69F4 /* Extencions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,7 +310,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 58NQ7DA6UP;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "iOS12-HW11-Mikhailova-Olga/Resourses/Configuration/Info.plist";
+				INFOPLIST_FILE = "iOS12-HW11-Mikhailova-Olga/Resourses/info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -341,7 +337,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 58NQ7DA6UP;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "iOS12-HW11-Mikhailova-Olga/Resourses/Configuration/Info.plist";
+				INFOPLIST_FILE = "iOS12-HW11-Mikhailova-Olga/Resourses/info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
