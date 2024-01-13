@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     //MARK: - Outlets UI
     
     //MARK: - ViewBackground
+    // так понимаю в констрейнты данную вьюху не надо добавлять или надо?
     private lazy var background: UIView = {
         let background = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 0))
         let gradient = CAGradientLayer()
@@ -60,7 +61,6 @@ class ViewController: UIViewController {
         loginTextField.setLeftIcon(image: UIImage(systemName: "person") ?? UIImage(), color: UIColor.gray)
         loginTextField.setRightIcon(image: UIImage(systemName: "checkmark.circle.fill") ?? UIImage(), color: UIColor.green)
         loginTextField.backgroundColor = .white
-        //loginTextField.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         loginTextField.translatesAutoresizingMaskIntoConstraints = false
         return loginTextField
     }()
@@ -75,7 +75,6 @@ class ViewController: UIViewController {
         passwordTextField.textColor = UIColor.systemGray3
         passwordTextField.setLeftIcon(image: UIImage(systemName: "lock") ?? UIImage(), color: UIColor.gray)
         passwordTextField.backgroundColor = .white
-        //passwordTextField.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         return passwordTextField
     }()
@@ -96,7 +95,6 @@ class ViewController: UIViewController {
         loginButton.layer.shouldRasterize = true
         loginButton.layer.rasterizationScale = UIScreen.main.scale
         loginButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-       // loginButton.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         return loginButton
     }()
@@ -108,7 +106,6 @@ class ViewController: UIViewController {
         remindTextButton.setTitleColor(UIColor.white, for: .normal)
         remindTextButton.titleLabel?.font = UIFont(name: "Avenir-Next", size: 12)
         remindTextButton.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .bold)
-        //remindTextButton.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         remindTextButton.translatesAutoresizingMaskIntoConstraints = false
         return remindTextButton
     }()
@@ -123,7 +120,6 @@ class ViewController: UIViewController {
         connectTextField.font = UIFont(name: "Avenir-Next", size: 10)
         connectTextField.font = UIFont.systemFont(ofSize: 10, weight: .light)
         connectTextField.layer.cornerRadius = 20
-        //connectTextField.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         connectTextField.translatesAutoresizingMaskIntoConstraints = false
         return connectTextField
     }()
@@ -133,7 +129,6 @@ class ViewController: UIViewController {
     private lazy var line: UIView = {
         let line = UIView()
         line.backgroundColor = UIColor.systemGray5
-        //line.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         line.translatesAutoresizingMaskIntoConstraints = false
         return line
     }()
@@ -158,7 +153,6 @@ class ViewController: UIViewController {
         faceBookButton.layer.shouldRasterize = true
         faceBookButton.layer.rasterizationScale = UIScreen.main.scale
         faceBookButton.addTarget(self, action: #selector(fbTapped), for: .touchUpInside)
-        //faceBookButton.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         faceBookButton.translatesAutoresizingMaskIntoConstraints = false
         return faceBookButton
     }()
@@ -182,7 +176,6 @@ class ViewController: UIViewController {
         twitterButton.layer.shadowRadius = 10
         twitterButton.layer.shouldRasterize = true
         twitterButton.layer.rasterizationScale = UIScreen.main.scale
-       // twitterButton.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         twitterButton.translatesAutoresizingMaskIntoConstraints = false
         return twitterButton
     }()
@@ -194,7 +187,6 @@ class ViewController: UIViewController {
         accountTextField.textColor = UIColor.gray
         accountTextField.font = UIFont(name: "Avenir-Next", size: 14)
         accountTextField.font = UIFont.systemFont(ofSize: 10, weight: .light)
-        //accountTextField.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         accountTextField.translatesAutoresizingMaskIntoConstraints = false
         return accountTextField
     }()
@@ -206,7 +198,6 @@ class ViewController: UIViewController {
         signUpTextView.font = UIFont(name: "Avenir-Next", size: 14)
         signUpTextView.font = UIFont.systemFont(ofSize: 10, weight: .light)
         signUpTextView.attributedText(string: signUpTextView.text ?? "" )
-        //signUpTextView.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         signUpTextView.translatesAutoresizingMaskIntoConstraints = false
         return signUpTextView
     }()
@@ -225,7 +216,7 @@ class ViewController: UIViewController {
     //MARK: - Setups
     
     private func setupView(){
-       // view.backgroundColor = .blue
+      
     }
     
     private func setupHierarchy() {
