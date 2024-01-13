@@ -14,7 +14,7 @@ class ViewController: UIViewController {
 //    private enum Constants {
 //        static let background = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 0))
 //    }
-    //MARK: - Outlets
+    //MARK: - Outlets UI
     
     //MARK: - ViewBackground
     private lazy var background: UIView = {
@@ -41,6 +41,7 @@ class ViewController: UIViewController {
         login.textColor = .white
         login.font = UIFont(name: "Avenir-Next", size: 31)
         login.font = UIFont.systemFont(ofSize: 31, weight: .bold)
+        // Поискала как делать чтоб все было на местах при повороте экрана - мало что поняла, а это не работает потому что мы их отключили вероятно... и как тогда быть?
         //login.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         login.translatesAutoresizingMaskIntoConstraints = false
         return login
