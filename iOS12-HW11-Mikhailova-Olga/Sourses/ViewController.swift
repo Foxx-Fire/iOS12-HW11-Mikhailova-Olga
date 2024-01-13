@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     //MARK: - ViewBackground
     // так понимаю в констрейнты данную вьюху не надо добавлять или надо?
     private lazy var background: UIView = {
-        let background = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 0))
+        let background = UIView()//(frame: CGRect(x: 0, y: 0, width: 320, height: 0))
         let gradient = CAGradientLayer()
 
         gradient.frame = view.bounds
@@ -27,7 +27,7 @@ class ViewController: UIViewController {
 
         background.layer.insertSublayer(gradient, at: 0)
         
-        background.contentMode = .scaleAspectFit
+        //background.contentMode = .scaleAspectFit
         background.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         background.translatesAutoresizingMaskIntoConstraints = false
         return background
@@ -152,7 +152,7 @@ class ViewController: UIViewController {
         faceBookButton.layer.shadowRadius = 10
         faceBookButton.layer.shouldRasterize = true
         faceBookButton.layer.rasterizationScale = UIScreen.main.scale
-        faceBookButton.addTarget(self, action: #selector(fbTapped), for: .touchUpInside)
+        faceBookButton.addTarget(self, action: #selector(messengersTapped), for: .touchUpInside)
         faceBookButton.translatesAutoresizingMaskIntoConstraints = false
         return faceBookButton
     }()
@@ -176,6 +176,7 @@ class ViewController: UIViewController {
         twitterButton.layer.shadowRadius = 10
         twitterButton.layer.shouldRasterize = true
         twitterButton.layer.rasterizationScale = UIScreen.main.scale
+        twitterButton.addTarget(self, action: #selector(messengersTapped), for: .touchUpInside)
         twitterButton.translatesAutoresizingMaskIntoConstraints = false
         return twitterButton
     }()
@@ -236,54 +237,79 @@ class ViewController: UIViewController {
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
+            background.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            background.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            background.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            background.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
             
-            login.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            login.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -250),
+//            login.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            login.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -70),
+            login.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60),
+            login.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60),
+            login.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
+            login.widthAnchor.constraint(equalToConstant: 60),
+            login.heightAnchor.constraint(equalToConstant: 35),
             
-            loginTextField.topAnchor.constraint(equalTo: login.bottomAnchor, constant: 20),
-            loginTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loginTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 45),
-            loginTextField.heightAnchor.constraint(equalToConstant: 34),
+            loginTextField.topAnchor.constraint(equalTo: login.bottomAnchor, constant: 45),
+            //loginTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 45),
+            loginTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -45),
+            loginTextField.heightAnchor.constraint(equalToConstant: 38),
+            loginTextField.widthAnchor.constraint(equalToConstant: 120),
             
             passwordTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 20),
             passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            passwordTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 45),
-            passwordTextField.heightAnchor.constraint(equalToConstant: 34),
+            passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 45),
+            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -45),
+            passwordTextField.heightAnchor.constraint(equalToConstant: 38),
+            passwordTextField.widthAnchor.constraint(equalToConstant: 120),
             
-            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 40),
-            loginButton.centerXAnchor.constraint(equalTo:view.centerXAnchor),
-            loginButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 45),
-            loginButton.heightAnchor.constraint(equalToConstant: 34),
-            //
-            remindTextButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 25),
-            remindTextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 45),
+            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 45),
+            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -45),
+            loginButton.heightAnchor.constraint(equalToConstant: 38),
+            loginButton.widthAnchor.constraint(equalToConstant: 120),
+           
+            remindTextButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 20),
+            remindTextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60),
+            remindTextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60),
+            remindTextButton.heightAnchor.constraint(equalToConstant: 18),
+            remindTextButton.widthAnchor.constraint(equalToConstant: 40),
             
-            line.topAnchor.constraint(equalTo: remindTextButton.bottomAnchor, constant: 160),
-            line.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            line.topAnchor.constraint(equalTo: remindTextButton.bottomAnchor, constant: 190),
             line.heightAnchor.constraint(equalToConstant: 1),
             line.widthAnchor.constraint(equalToConstant: 50),
-            line.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            line.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            line.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            connectTextField.topAnchor.constraint(equalTo: remindTextButton.bottomAnchor, constant: 155),
-            connectTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            connectTextField.topAnchor.constraint(equalTo: remindTextButton.bottomAnchor, constant: 185),
+            connectTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 130),
+            connectTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -130),
             connectTextField.heightAnchor.constraint(equalToConstant: 10),
             connectTextField.widthAnchor.constraint(equalToConstant: 100),
             
-            faceBookButton.topAnchor.constraint(equalTo: connectTextField.bottomAnchor, constant: 30),
-            faceBookButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 35),
+            faceBookButton.topAnchor.constraint(equalTo: connectTextField.bottomAnchor, constant: 45),
+            faceBookButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 35),
+            //faceBookButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -220),
             faceBookButton.heightAnchor.constraint(equalToConstant: 34),
             faceBookButton.widthAnchor.constraint(equalToConstant: 150),
             
-            twitterButton.topAnchor.constraint(equalTo: connectTextField.bottomAnchor, constant: 30),
-            twitterButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -35),
+            twitterButton.topAnchor.constraint(equalTo: connectTextField.bottomAnchor, constant: 45),
+           //twitterButton.leadingAnchor.constraint(equalTo: faceBookButton.trailingAnchor, constant: 300),
+           // twitterButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 220),
+            twitterButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -35),
             twitterButton.heightAnchor.constraint(equalToConstant: 34),
             twitterButton.widthAnchor.constraint(equalToConstant: 150),
             
-            accountTextField.topAnchor.constraint(equalTo: faceBookButton.bottomAnchor, constant: 35),
-            accountTextField.leftAnchor.constraint(equalTo: view.leftAnchor,constant: 120),
+            accountTextField.topAnchor.constraint(equalTo: faceBookButton.bottomAnchor, constant: 45),
+            accountTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 120),
+            accountTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -35),
+            accountTextField.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80),
             
-            signUpTextView.topAnchor.constraint(equalTo: faceBookButton.bottomAnchor, constant: 35),
-            signUpTextView.rightAnchor.constraint(equalTo: accountTextField.rightAnchor, constant: 45)
+            signUpTextView.topAnchor.constraint(equalTo: faceBookButton.bottomAnchor, constant: 45),
+            signUpTextView.rightAnchor.constraint(equalTo: accountTextField.rightAnchor, constant: 15),
+            signUpTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -130),
+            signUpTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80)
         ])
         
     }
@@ -295,7 +321,7 @@ class ViewController: UIViewController {
     }
     
     // почему-то не отрабатывает принт
-    @objc private func fbTapped() {
+    @objc private func messengersTapped() {
         print("Надеемся, у вас есть VPN")
     }
 //    
